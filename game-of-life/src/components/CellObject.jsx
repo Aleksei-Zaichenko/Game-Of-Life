@@ -1,5 +1,16 @@
 import React from "react";
 
+const individualCell = {
+  background: "#D3D3D3",
+  border: "1px solid #999",
+  lineHeight: "34px",
+  height: "34px",
+  marginRight: "-1px",
+  marginTop: "-2px",
+  padding: "0",
+  width: "34px",
+};
+
 export default class CellObject extends React.Component {
   constructor(props) {
     super(props);
@@ -20,6 +31,12 @@ export default class CellObject extends React.Component {
   }
 
   render() {
-    return <div>{this.state.currentState ? <p>true</p> : <p>false</p>}</div>;
+    return (
+      <button
+        className="individualCell"
+        style={individualCell}
+        onClick={this.handleClick}
+      ></button>
+    );
   }
 }
