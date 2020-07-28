@@ -1,15 +1,5 @@
 import React from "react";
-
-const individualCell = {
-  background: "#D3D3D3",
-  border: "1px solid #999",
-  lineHeight: "34px",
-  height: "34px",
-  marginRight: "-1px",
-  marginTop: "-2px",
-  padding: "0",
-  width: "34px",
-};
+import "./cellObject.css";
 
 export default class CellObject extends React.Component {
   constructor(props) {
@@ -19,23 +9,43 @@ export default class CellObject extends React.Component {
 
     // each cell will hold it`s state as a boolean value
     // False = dead, True = alive
-    this.state = { currentState: false };
+    this.state = { currentState: false, bgColor: false, isDisabled: false };
   }
 
   handleClick() {
-    this.setState({ currentState: !this.state.currentState });
+    this.setState({
+      ...this.state,
+      currentState: !this.state.currentState,
+      bgColor: !this.state.bgColor,
+    });
   }
 
   handleStateChange() {
-    this.setState({ currentState: !this.state.currentState });
+    this.setState({
+      ...this.state,
+      currentState: !this.state.currentState,
+      bg: !this.state.bgColor,
+    });
+  }
+
+  handleDisabling() {
+    this.setState({
+      ...this.state,
+      isDisabled: !this.state.isDisabled,
+    });
   }
 
   render() {
     return (
       <button
         className="individualCell"
-        style={individualCell}
+        style={
+          this.state.bgColor
+            ? { backgroundColor: "orange" }
+            : { backgroundColor: "#D3D3D3" }
+        }
         onClick={this.handleClick}
+        disabled={this.state.isDisabled}
       ></button>
     );
   }
