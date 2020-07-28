@@ -1,12 +1,6 @@
 import React from "react";
 import CellObject from "./CellObject";
 
-const boardRow = {
-  clear: "both",
-  content: "",
-  display: "table",
-};
-
 export default class GameBoard extends React.Component {
   constructor(props) {
     super(props);
@@ -24,10 +18,13 @@ export default class GameBoard extends React.Component {
     for (var i = 0; i < 25; i++) {
       let squares = [];
       for (var j = 0; j < 25; j++) {
-        squares.push(<CellObject />);
+        squares.push(<CellObject color="yellow" />);
       }
       rows.push(
-        <div className="board-row" style={{}}>
+        <div
+          className="board-row"
+          style={{ border: "none", padding: "0", margin: "0" }}
+        >
           {squares}
         </div>
       );
@@ -39,7 +36,7 @@ export default class GameBoard extends React.Component {
     return (
       <div className="GameBoard">
         <p>Current Generation: {this.state.generation}</p>
-        {this.createSquares()}
+        <div>{this.createSquares()}</div>
         <div className="buttonsContainer">
           <button onClick={this.handleStart}>Start</button>
           <button onClick={this.handleStop}>Stop</button>
