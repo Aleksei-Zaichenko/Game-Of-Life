@@ -6,7 +6,8 @@ export default class CellObject extends React.Component {
     super(props);
     this.handleClick = this.handleClick.bind(this);
     this.handleStateChange = this.handleStateChange.bind(this);
-
+    this.handleDisabling = this.handleDisabling.bind(this);
+    this.getCurrentState = this.getCurrentState.bind(this);
     // each cell will hold it`s state as a boolean value
     // False = dead, True = alive
     this.state = { currentState: false, bgColor: false, isDisabled: false };
@@ -33,6 +34,10 @@ export default class CellObject extends React.Component {
       ...this.state,
       isDisabled: !this.state.isDisabled,
     });
+  }
+
+  getCurrentState() {
+    return this.state.currentState;
   }
 
   render() {
