@@ -1,68 +1,82 @@
 import React from "react";
 import Cell from "./Cell";
-import CellObject from "./CellObject";
 
 export default class GameBoard extends React.Component {
   constructor(props) {
     super(props);
     this.handleStart = this.handleStart.bind(this);
+    this.handleStop = this.handleStop.bind(this);
     this.handleClear = this.handleClear.bind(this);
+    this.createSquares = this.createSquares.bind(this);
+    this.toggleCell = this.toggleCell.bind(this);
     this.state = {
       generation: 0,
-      cells: Array(625).fill(new CellObject()),
-      animationID: null,
       isGameDisabled: false,
     };
+    this.board = this.makeBoard();
   }
 
   handleStart() {
     this.setState({ ...this.state, isGameDisabled: true });
-    for (let i = 0; i < 625; i++) {
-      this.state.cells[i].setDisabled(!this.state.cells[i].getDisabled());
-    }
-    console.log("done");
-    console.log(this.state.cells[0]);
   }
 
-  handleStop() {}
+  handleStop() {
+    this.setState({ ...this.state, isGameDisabled: false });
+  }
 
   handleClear() {}
 
+  makeBoard() {
+    let board = [];
+    for (let y = 0; y < 25; y++) {
+      board[y] = [];
+      for (let x = 0; x < 25; x++) {
+        board[y][x] = false;
+      }
+    }
+
+    return board;
+  }
+
+  toggleCell(xValue, yValue) {
+    this.board[xValue][yValue] = !this.board[xValue][yValue];
+  }
+
   createSquares() {
     let rows = [];
-    let squares = [];
-    for (var i = 0; i < 625; i++) {
-      if (i % 25 === 0) {
-        rows.push(
-          <div
-            key={i}
-            className="board-row"
-            style={{ border: "none", padding: "0", margin: "0" }}
-          >
-            {squares}
-          </div>
+    let board = [];
+    for (let x = 0; x < 25; x++) {
+      board = [];
+      for (let y = 0; y < 25; y++) {
+        board.push(
+          <Cell
+            key={(x + 1) * y}
+            x={x}
+            y={y}
+            toggleCell={this.toggleCell}
+            isGameDisabled={this.state.isGameDisabled}
+          />
         );
-        squares = [];
       }
-      squares.push(
-        <Cell
-          key={i}
-          CellObject={this.state.cells[i]}
-          isGameDisabled={this.state.isGameDisabled}
-        />
+      rows.push(
+        <div
+          key={x}
+          className="board-row"
+          style={{ border: "none", padding: "0", margin: "0" }}
+        >
+          {board}
+        </div>
       );
     }
+
     return rows;
   }
 
   render() {
-    const rows = this.createSquares();
-
-    console.log(rows);
     return (
       <div className="GameBoard">
         <p>Current Generation: {this.state.generation}</p>
-        <div>{rows}</div>
+        <div>{this.createSquares()}</div>
         <div className="buttonsContainer">
           <button onClick={this.handleStart}>Start</button>
           <button onClick={this.handleStop}>Stop</button>
