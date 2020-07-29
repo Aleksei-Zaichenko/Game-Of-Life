@@ -1,14 +1,10 @@
 export default class CellObject {
-  constructor(state = false, backGroundColor = false, disabled = false) {
+  constructor(state = false, disabled = false) {
     this.state = state;
-    this.backGroundColor = backGroundColor;
     this.disabled = disabled;
   }
   getState() {
     return this.state;
-  }
-  getBackgroundColor() {
-    return this.backGroundColor;
   }
   getDisabled() {
     return this.disabled;

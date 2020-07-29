@@ -6,23 +6,19 @@ export default class GameBoard extends React.Component {
   constructor(props) {
     super(props);
     this.handleStart = this.handleStart.bind(this);
-    // this.createSquares = this.createSquares.bind(this);
     this.handleClear = this.handleClear.bind(this);
     this.state = {
       generation: 0,
       cells: Array(625).fill(new CellObject()),
       animationID: null,
+      isGameDisabled: false,
     };
   }
 
   handleStart() {
-    // console.log("object before", this.state.cells[0]);
-    // this.state.cells[0].setDisabled(!this.state.cells[0].getDisabled());
-    // this.state.cells[0].setState(!this.state.cells[0].getState());
-    // console.log("object", this.state.cells[0]);
+    this.setState({ ...this.state, isGameDisabled: true });
     for (let i = 0; i < 625; i++) {
       this.state.cells[i].setDisabled(!this.state.cells[i].getDisabled());
-      this.state.cells[i].setState(!this.state.cells[i].getState());
     }
     console.log("done");
     console.log(this.state.cells[0]);
@@ -48,13 +44,16 @@ export default class GameBoard extends React.Component {
         );
         squares = [];
       }
-      squares.push(<Cell key={i} CellObject={this.state.cells[i]} />);
+      squares.push(
+        <Cell
+          key={i}
+          CellObject={this.state.cells[i]}
+          isGameDisabled={this.state.isGameDisabled}
+        />
+      );
     }
     return rows;
   }
-  // state={this.state.cells[i].getState()}
-  // backGroundColor={this.state.cells[i].getBackgroundColor()}
-  // disabledButton={this.state.cells[0].getDisabled()}
 
   render() {
     const rows = this.createSquares();
