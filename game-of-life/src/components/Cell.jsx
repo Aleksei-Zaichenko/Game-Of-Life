@@ -1,7 +1,7 @@
 import React from "react";
 import "./cellObject.css";
 
-export default class CellObject extends React.Component {
+export default class Cell extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
@@ -10,10 +10,17 @@ export default class CellObject extends React.Component {
     this.getCurrentState = this.getCurrentState.bind(this);
     // each cell will hold it`s state as a boolean value
     // False = dead, True = alive
-    this.state = { currentState: false, bgColor: false, isDisabled: false };
+    this.state = {
+      currentState: this.props.state,
+      bgColor: this.props.backgroundColor,
+      isDisabled: this.props.CellObject.disabled,
+    };
   }
 
   handleClick() {
+    console.log("props", this.props.CellObject);
+    console.log("currentState:", this.state.currentState);
+    console.log("disabled: ", this.state.isDisabled);
     this.setState({
       ...this.state,
       currentState: !this.state.currentState,
@@ -38,6 +45,19 @@ export default class CellObject extends React.Component {
 
   getCurrentState() {
     return this.state.currentState;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log("prev", prevProps);
+    console.log(prevState);
+    if (this.props.CellObject.disabled) {
+      console.log("oh");
+      this.setState({
+        currentState: this.props.state,
+        bgColor: this.props.backgroundColor,
+        isDisabled: this.props.CellObject.disabled,
+      });
+    }
   }
 
   render() {

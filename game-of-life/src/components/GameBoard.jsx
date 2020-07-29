@@ -1,4 +1,5 @@
 import React from "react";
+import Cell from "./Cell";
 import CellObject from "./CellObject";
 
 export default class GameBoard extends React.Component {
@@ -9,79 +10,60 @@ export default class GameBoard extends React.Component {
     this.handleClear = this.handleClear.bind(this);
     this.state = {
       generation: 0,
-      cells: Array(25).fill(<div>{Array(25).fill(<CellObject />)}</div>),
+      cells: Array(625).fill(new CellObject()),
       animationID: null,
     };
   }
 
   handleStart() {
-    // console.log(this.state.cells[0]);
-    // for (let i = 0; i < 625; i++) {
-    //   if (this.state.cells[i].getCurrentState() === true) {
-    //     console.log("true");
-    //     this.state.cells[i].handleDisabling();
-    //   }
-    // }
+    // console.log("object before", this.state.cells[0]);
+    // this.state.cells[0].setDisabled(!this.state.cells[0].getDisabled());
+    // this.state.cells[0].setState(!this.state.cells[0].getState());
+    // console.log("object", this.state.cells[0]);
+    for (let i = 0; i < 625; i++) {
+      this.state.cells[i].setDisabled(!this.state.cells[i].getDisabled());
+      this.state.cells[i].setState(!this.state.cells[i].getState());
+    }
+    console.log("done");
+    console.log(this.state.cells[0]);
   }
 
   handleStop() {}
 
-  handleClear() { 
-    this.setState({
-      generation: 0,
-      cells: Array(25).fill(<div>{Array(25).fill(<CellObject />)}</div>),
-      animationID: null,
-    });
-  }
+  handleClear() {}
 
   createSquares() {
-    // let rows = [];
-    // for (var i = 0; i < 25; i++) {
-    //   let squares = [];
-    //   for (var j = 0; j < 25; j++) {
-    //     squares.push(<CellObject />);
-    //   }
-    //   rows.push(
-    //     <div
-    //       className="board-row"
-    //       style={{ border: "none", padding: "0", margin: "0" }}
-    //     >
-    //       {squares}
-    //     </div>
-    //   );
-    // }
-    // let rows = [];
-    // let squares = [];
-    // for (var i = 0; i < 625; i++) {
-    //   if (i % 25 === 0) {
-    //     rows.push(
-    //       <div
-    //         className="board-row"
-    //         style={{ border: "none", padding: "0", margin: "0" }}
-    //       >
-    //         {squares}
-    //       </div>
-    //     );
-    //     squares = [];
-    //   }
-    //   squares.push();
-    // }
-    // return rows;
+    let rows = [];
+    let squares = [];
+    for (var i = 0; i < 625; i++) {
+      if (i % 25 === 0) {
+        rows.push(
+          <div
+            key={i}
+            className="board-row"
+            style={{ border: "none", padding: "0", margin: "0" }}
+          >
+            {squares}
+          </div>
+        );
+        squares = [];
+      }
+      squares.push(<Cell key={i} CellObject={this.state.cells[i]} />);
+    }
+    return rows;
   }
-
-  componentDidMount() {
-    // const rows = this.createSquares();
-    // this.setState({ ...this.state, cells: rows });
-  }
+  // state={this.state.cells[i].getState()}
+  // backGroundColor={this.state.cells[i].getBackgroundColor()}
+  // disabledButton={this.state.cells[0].getDisabled()}
 
   render() {
-    // const rows = this.createSquares();
+    const rows = this.createSquares();
 
-    // console.log(rows);
+    console.log(rows);
     return (
       <div className="GameBoard">
         <p>Current Generation: {this.state.generation}</p>
-        <div>{this.state.cells}</div>
+        <div>{rows}</div>
         <div className="buttonsContainer">
           <button onClick={this.handleStart}>Start</button>
           <button onClick={this.handleStop}>Stop</button>
