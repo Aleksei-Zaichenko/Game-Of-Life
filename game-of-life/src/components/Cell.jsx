@@ -78,8 +78,11 @@ import "./cellObject.css";
 export default function Cell(props) {
   const [currentState, setCurrentState] = useState(false);
 
-  function handleClick() {
+  function handleClick(event) {
+    console.log("props", props);
     setCurrentState(!currentState);
+    props.toggleCell(props.x, props.y);
+    console.log("props", props);
   }
 
   return (
