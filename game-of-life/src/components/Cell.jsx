@@ -78,10 +78,10 @@ import "./cellObject.css";
 export default function Cell(props) {
   const [currentState, setCurrentState] = useState(false);
 
-  function handleClick(event) {
+  function handleClick() {
     console.log("props", props);
-    setCurrentState(!currentState);
     props.toggleCell(props.x, props.y);
+    // setCurrentState(!currentState);
     console.log("props", props);
   }
 
@@ -89,7 +89,7 @@ export default function Cell(props) {
     <button
       className="individualCell"
       style={
-        currentState
+        props.cellObject
           ? { backgroundColor: "orange" }
           : { backgroundColor: "#D3D3D3" }
       }
