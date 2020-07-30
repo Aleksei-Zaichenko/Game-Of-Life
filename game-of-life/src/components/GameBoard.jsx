@@ -46,8 +46,8 @@ function GameBoard(props) {
             }}
             style={
               board[passedxValue][y]
-                ? { backgroundColor: "orange" }
-                : { backgroundColor: "#D3D3D3" }
+                ? { backgroundColor: "CornflowerBlue" }
+                : { backgroundColor: "purple" }
             }
             disabled={isGameDisabled}
           />
@@ -119,7 +119,7 @@ function GameBoard(props) {
 
   return (
     <div className="GameBoard">
-      <p className="generationDisplay">Current Generation: {generations}</p>
+      <p className="generationsParagraph">Current Generation: {generations}</p>
       <div className="cellsContainer">
         {board.map((rows, x) => createSquares(rows, x))}
       </div>
@@ -161,28 +161,4 @@ function GameBoard(props) {
     </div>
   );
 }
-
-// setBoard((b) => {
-//   return produce(b, (boardCopy) => {
-//     for (let i = 0; i < xValue; i++) {
-//       for (let k = 0; k < yValue; k++) {
-//         let neighbors = 0;
-//         operations.forEach(([x, y]) => {
-//           const newI = i + x;
-//           const newK = k + y;
-//           if (newI >= 0 && newI < xValue && newK >= 0 && newK < yValue) {
-//             neighbors += 1;
-//           }
-//         });
-
-//         if (neighbors < 2 || neighbors > 3) {
-//           boardCopy[i][k] = false;
-//         } else if (b[i][k] === 0 && neighbors === 3) {
-//           boardCopy[i][k] = true;
-//         }
-//       }
-//     }
-//   });
-// });
-
 export default GameBoard;

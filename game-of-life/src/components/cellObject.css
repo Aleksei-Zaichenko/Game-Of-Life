@@ -28,9 +28,10 @@
   margin: 0;
 }
 
-.generationDisplay {
+.generationsParagraph {
+  color: orange;
   margin-top: 0.3%;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   text-align: center;
   font-weight: bold;
 }
@@ -48,6 +49,10 @@
   padding: 16px 16px;
   border-radius: 8px;
 }
+
 .rules {
+  background-color: black;
+  font-size: 1.3rem;
+  color: Silver;
   font-weight: bold;
 }
