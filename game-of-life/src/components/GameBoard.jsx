@@ -81,6 +81,24 @@ function GameBoard(props) {
     setBoard(makeBoard());
   }
 
+  function handleRandom() {
+    setIsGameDisabled(false);
+    setGenerations(0);
+
+    function makeRandomBoard() {
+      let board = [];
+      for (let x = 0; x < xValue; x++) {
+        board[x] = [];
+        for (let y = 0; y < yValue; y++) {
+          board[x][y] = Math.floor(Math.random() * 2);
+        }
+      }
+      return board;
+    }
+
+    setBoard(makeRandomBoard());
+  }
+
   const runningRef = useRef(isGameDisabled);
   runningRef.current = isGameDisabled;
 
@@ -144,6 +162,13 @@ function GameBoard(props) {
           onClick={handleClear}
         >
           Clear
+        </button>
+        <button
+          className="controlButton"
+          style={{ color: "DimGray", backgroundColor: "LightSalmon" }}
+          onClick={handleRandom}
+        >
+          Crazy Random
         </button>
       </div>
       <div>
