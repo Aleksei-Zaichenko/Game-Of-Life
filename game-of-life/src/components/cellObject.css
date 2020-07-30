@@ -24,6 +24,7 @@
 
 .row {
   width: 50%;
+  display: flex;
   padding: 0;
   margin: 0;
 }
@@ -38,7 +39,7 @@
 
 .buttonsContainer {
   margin-top: 0.7%;
-  width: 30%;
+  width: 50%;
   display: flex;
   justify-content: space-evenly;
 }

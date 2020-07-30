@@ -78,6 +78,8 @@ function GameBoard(props) {
   function handleClear() {
     setIsGameDisabled(false);
     setGenerations(0);
+    setXValue(25);
+    setYValue(25);
     setBoard(makeBoard());
   }
 
@@ -135,6 +137,21 @@ function GameBoard(props) {
     setTimeout(runGame, gameSpeed);
   }, [gameSpeed]);
 
+  function handleXValueChange(event) {
+    setXValue(event.target.value);
+    setBoard(makeBoard());
+  }
+
+  function handleYValueChange(event) {
+    setYValue(event.target.value);
+    setBoard(makeBoard());
+  }
+
+  function handleGameSpeedChange(event) {
+    setGameSpeed(event.target.value);
+    setBoard(makeBoard());
+  }
+
   return (
     <div className="GameBoard">
       <p className="generationsParagraph">Current Generation: {generations}</p>
@@ -165,11 +182,52 @@ function GameBoard(props) {
         </button>
         <button
           className="controlButton"
-          style={{ color: "DimGray", backgroundColor: "LightSalmon" }}
+          style={{ color: "Cornsilk", backgroundColor: "LightSalmon" }}
           onClick={handleRandom}
         >
           Crazy Random
         </button>
+        <form
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            color: "white",
+            fontSize: "1.3rem",
+          }}
+        >
+          <label>
+            Number of rows:{" "}
+            <input
+              type="number"
+              name="xValue"
+              value={xValue}
+              onChange={(event) => handleXValueChange(event)}
+            />
+          </label>
+          <label>
+            Number of columns:{" "}
+            <input
+              type="number"
+              name="yValue"
+              value={yValue}
+              onChange={(event) => handleYValueChange(event)}
+            />
+          </label>
+        </form>
+      </div>
+      <div>
+        <form>
+          <label style={{ color: "Gainsboro", fontSize: "2.5rem" }}>
+            Game Speed:{" "}
+            <input
+              style={{ fontSize: "2rem" }}
+              type="number"
+              name="gameSpeed"
+              value={gameSpeed}
+              onChange={(event) => handleGameSpeedChange(event)}
+            />
+          </label>
+        </form>
       </div>
       <div>
         <p className="rules">
