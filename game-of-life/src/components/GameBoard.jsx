@@ -148,7 +148,6 @@ function GameBoard(props) {
 
   function handleGameSpeedChange(event) {
     setGameSpeed(event.target.value);
-    setBoard(makeBoard());
   }
 
   return (
