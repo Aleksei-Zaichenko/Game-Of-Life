@@ -109,7 +109,6 @@ function GameBoard(props) {
       console.log("return");
       return;
     }
-
     setBoard((b) => {
       return produce(b, (boardCopy) => {
         for (let i = 0; i < xValue; i++) {
@@ -135,7 +134,7 @@ function GameBoard(props) {
 
     setGenerations((generations) => generations + 1);
     setTimeout(runGame, gameSpeed);
-  }, [gameSpeed]);
+  }, [gameSpeed, xValue, yValue]);
 
   function handleXValueChange(event) {
     setXValue(event.target.value);
@@ -231,13 +230,13 @@ function GameBoard(props) {
       </div>
       <div>
         <p className="rules">
-          1) Any live cell with fewer than two live neighbours dies, as if by
-          underpopulation.
-          <br /> 2) Any live cell with two or three live neighbours lives on to
-          the next generation. <br />
-          3) Any live cell with more than three live neighbours dies, as if by
-          overpopulation. <br />
-          4) Any dead cell with exactly three live neighbours becomes a live
+          1&#41; Any live cell with fewer than two live neighbours dies, as if
+          by underpopulation.
+          <br /> 2&#41; Any live cell with two or three live neighbours lives on
+          to the next generation. <br />
+          3&#41; Any live cell with more than three live neighbours dies, as if
+          by overpopulation. <br />
+          4&#41; Any dead cell with exactly three live neighbours becomes a live
           cell, as if by reproduction.
         </p>
       </div>
