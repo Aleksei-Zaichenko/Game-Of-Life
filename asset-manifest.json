@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/CS-First-Buld-Week/static/css/main.0ee0422a.chunk.css",
+    "main.js": "/CS-First-Buld-Week/static/js/main.eb147af1.chunk.js",
+    "main.js.map": "/CS-First-Buld-Week/static/js/main.eb147af1.chunk.js.map",
+    "runtime-main.js": "/CS-First-Buld-Week/static/js/runtime-main.9410e161.js",
+    "runtime-main.js.map": "/CS-First-Buld-Week/static/js/runtime-main.9410e161.js.map",
+    "static/js/2.407701d2.chunk.js": "/CS-First-Buld-Week/static/js/2.407701d2.chunk.js",
+    "static/js/2.407701d2.chunk.js.map": "/CS-First-Buld-Week/static/js/2.407701d2.chunk.js.map",
+    "index.html": "/CS-First-Buld-Week/index.html",
+    "precache-manifest.cad6b9f6478b3fdef39fcce4d92bf56c.js": "/CS-First-Buld-Week/precache-manifest.cad6b9f6478b3fdef39fcce4d92bf56c.js",
+    "service-worker.js": "/CS-First-Buld-Week/service-worker.js",
+    "static/css/main.0ee0422a.chunk.css.map": "/CS-First-Buld-Week/static/css/main.0ee0422a.chunk.css.map",
+    "static/js/2.407701d2.chunk.js.LICENSE.txt": "/CS-First-Buld-Week/static/js/2.407701d2.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/CS-First-Buld-Week/static/media/bgImage.d6ffebb1.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9410e161.js",
+    "static/js/2.407701d2.chunk.js",
+    "static/css/main.0ee0422a.chunk.css",
+    "static/js/main.eb147af1.chunk.js"
+  ]
+}
