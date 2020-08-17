@@ -9,24 +9,24 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  padding: 0.3% 0;
+  overflow: auto;
+  height: 69vh;
 }
 
 .individualCell {
-  border: 0.5px solid #999;
-  height: 2.5em;
+  border: 0.1px solid #999;
+  height: 2.2em;
   margin-right: -1px;
   margin-top: -3px;
-  padding: 0;
-  width: 4.1%;
+  width: 3.8%;
 }
 
 .row {
-  width: 50%;
+  width: 44%;
   display: flex;
-  padding: 0;
-  margin: 0;
+  justify-content: center;
 }
 
 .generationsParagraph {

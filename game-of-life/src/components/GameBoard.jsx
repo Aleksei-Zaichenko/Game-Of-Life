@@ -22,6 +22,7 @@ function GameBoard(props) {
   const [board, setBoard] = useState(() => {
     return makeBoard();
   });
+  const [buffer, setBuffer] = useState([board]);
 
   function makeBoard() {
     let board = [];
@@ -69,10 +70,15 @@ function GameBoard(props) {
       runningRef.current = true;
       runGame();
     }
+    let temp = isGameDisabled;
+    console.log("temo", temp);
+    console.log(isGameDisabled);
+    generationsGenerator(isGameDisabled);
   }
 
   function handleStop() {
     setIsGameDisabled(false);
+    console.log(buffer);
   }
 
   function handleClear() {
@@ -106,7 +112,6 @@ function GameBoard(props) {
 
   const runGame = useCallback(() => {
     if (!runningRef.current) {
-      console.log("return");
       return;
     }
     setBoard((b) => {
@@ -131,10 +136,41 @@ function GameBoard(props) {
         }
       });
     });
-
     setGenerations((generations) => generations + 1);
     setTimeout(runGame, gameSpeed);
   }, [gameSpeed, xValue, yValue]);
+
+  function generationsGenerator(gameStatus) {
+    let m = 0;
+    console.log(gameStatus);
+    let temp = isGameDisabled;
+    console.log("tempo", temp);
+    // while (checkForloop) {
+    // let newBoard = produce(buffer[m], (boardCopy) => {
+    //   for (let i = 0; i < xValue; i++) {
+    //     for (let k = 0; k < yValue; k++) {
+    //       let neighbors = 0;
+    //       operations.forEach(([x, y]) => {
+    //         const newI = i + x;
+    //         const newK = k + y;
+    //         if (newI >= 0 && newI < xValue && newK >= 0 && newK < yValue) {
+    //           neighbors += buffer[m][newI][newK];
+    //         }
+    //       });
+    //       if (neighbors < 2 || neighbors > 3) {
+    //         boardCopy[i][k] = 0;
+    //       } else if (buffer[m][i][k] === 0 && neighbors === 3) {
+    //         boardCopy[i][k] = 1;
+    //       }
+    //     }
+    //   }
+    // });
+    //   setBuffer([...buffer, buffer]);
+    //   m++;
+    //   console.log(m);
+    //   setBuffer([...buffer, board]);
+    // }
+  }
 
   function handleXValueChange(event) {
     setXValue(event.target.value);
